@@ -3,7 +3,7 @@ class EmailService {
 
     }
 
-    sendEmailWelcomeAluno(){
+    sendEmailWelcomeAluno(email: string){
         //UNICA RESPOSABILIDADE DE ENVIAR E-MAILS DE BOAS VINDAS PARA ALUNOS
 
     }

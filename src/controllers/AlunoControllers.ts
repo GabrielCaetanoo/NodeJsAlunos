@@ -25,7 +25,7 @@ class alunoController {
         //Validar Dados
         //Sanitizar Dados
         const result = alunoService.add(Req.body);
-
+        Res.json(result);
     }
 
     update(Req: Request, Res: Response) {
