@@ -14,6 +14,7 @@ class alunoController {
         //Enviar dados para o Service
 
         const result = alunoService.getAll();
+        Res.json(result);
         
     }
 
@@ -29,13 +30,14 @@ class alunoController {
     }
 
     update(Req: Request, Res: Response) {
-        const result = alunoService.update(Req.params.is);
+        const result = alunoService.update(Req.params.id, Req.body);
+        Res.json(result);
     
     }
 
     delete(Req: Request, Res: Response) {
         const result = alunoService.delete(Req.params.id);
-    
+        Res.json(result);
     }
       
 }

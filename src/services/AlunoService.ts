@@ -1,8 +1,9 @@
 import EmailService from "./EmailService";
+import AlunoRepository from "../repositories/AlunoRepository";
 import { IAluno } from "../models/Aluno";
 
 const emailService = new EmailService();
-
+const alunoRepository = new AlunoRepository();
 
 class AlunoService {
     constructor() {
@@ -10,12 +11,12 @@ class AlunoService {
 
     getAll(): IAluno[] {
         //Pede para o repository solicitar ao banco de dados todos os registros de alunos
-        return [{name: "Gabriel", email: "contato@gmail.com", phone: "12312312", password: "12312344", cpf: "123123123"}]
+        return alunoRepository.getAll();
     }
 
     getById(id: string): IAluno {
         //Pedir para o repository solicitar ao banco de dados o registro do usuario para que tenha o id que chegou a rota
-        return {name: "Gabriel", email: "contato@gmail.com", phone: "12312312", password: "12312344", cpf: "123123123"}
+        return alunoRepository.getById(id);
     }
 
     add(data: IAluno): IAluno {
@@ -24,22 +25,22 @@ class AlunoService {
         //Se não existir solicitar que o repository (quem tem acesso ao banco de dados) faça inserção este aluno;
         emailService.sendEmailWelcomeAluno(data.email);
         //Enviar um e-mail para um aluno(Não colocar dentro do add)
-        return data;
+        return alunoRepository.add(data);
     }
 
-    update(id: string): IAluno{
+    update(id: string, data: IAluno ): IAluno{
         //Verificar se  esse aluno existe (repository)
         //Se não existir retornar erro
         //Se existir fazer alteração (repository)
 
-        return {name: "Gabriel", email: "contato@gmail.com", phone: "12312312", password: "12312344", cpf: "123123123"}
+       return alunoRepository.update(id, data);
     }
 
-    delete(id?: string): IAluno {
+    delete(id: string): string {
         //Verificar se esse aluno existe (repository)
         //Se não existir retornar erro
         //Se existir fazer a exclusão (repository)
-        return {name: "Gabriel", email: "contato@gmail.com", phone: "12312312", password: "12312344", cpf: "123123123"}
+        return alunoRepository.delete(id);
     }
 }
 
